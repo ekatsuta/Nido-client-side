@@ -97,6 +97,46 @@ class BookingInfo extends React.Component {
     }
   }
 
+  returnPlacements(status){
+    const foundCase = this.props.cases.find(caseObj => caseObj.id === parseInt(this.state.caseId))
+
+    const placements = foundCase.placements.filter(placement => {
+      return placement.status === status
+    })
+
+    if (placements.length === 0) {
+      return null
+    } else {
+      const bookedPeriods = placements.map(placement => {
+        const period = placement.period.split(",")
+        const startDate = new Date(period[0])
+        const endDate = new Date(period[1])
+        return [startDate, endDate]
+      })
+      return bookedPeriods
+    }
+  }
+
+
+
+  tileClassName = ({ date, view }) =>{
+    if (this.state.caseId) {
+      const bookedDates = this.returnPlacements("approved")
+      if (bookedDates) {
+        const booked = bookedDates.some(period => {
+          const fromDate = Date.parse(period[0])
+          const toDate = Date.parse(period[1])
+          return Date.parse(date) <= toDate && Date.parse(date) >=fromDate
+        })
+        return booked ? "approved" : null
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+  }
+
   checkPendingRequest(){
     const foundCase = this.props.cases.find(caseObj => caseObj.id === parseInt(this.state.caseId))
     if (foundCase) {
@@ -132,12 +172,21 @@ class BookingInfo extends React.Component {
 
 
   render() {
-    console.log("BOOKING", this.state)
     return (
       <div className="booking-container">
-        {this.state.showRequestButton ? <button className="request-button" onClick={this.createPlacement}>REQUEST PLACEMENT</button> :"REQUEST PENDING"}
-        {this.props.currentCase ? <p>Current Case #:{this.props.currentCase.id}</p> : this.renderMultipleCases()}
-        <Calendar className="calendar" selectRange onChange={this.setDate} value={this.state.date} tileDisabled={this.tileDisabled}/>
+        {this.state.showRequestButton ?
+          <button className="request-button" onClick={this.createPlacement}>REQUEST PLACEMENT</button> :
+          "REQUEST PENDING"}
+        {this.props.currentCase ?
+          <p>Current Case #:{this.props.currentCase.id}</p> :
+          this.renderMultipleCases()}
+        <Calendar className="calendar"
+          selectRange onChange={this.setDate}
+          value={this.state.date}
+          tileDisabled={this.tileDisabled}
+          tileClassName={this.tileClassName}
+        />
+        <p className='booked-marker'>Approved</p>
       </div>
     )
   }

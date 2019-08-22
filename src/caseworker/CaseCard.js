@@ -65,21 +65,18 @@ class CaseCard extends React.Component {
 
   renderStatus = () => {
     //first check if there are any future placement objects
-    debugger
+
     const futurePlacements = this.props.caseObj.placements.filter(placement => {
-      const a = new Date(placement.period.split(",")[0])
-      const b = new Date(this.props.currentDate)
-      const aDate = a.getMonth()+1 + "/" + a.getDate() + "/" + a.getFullYear()
-      const bDate = b.getMonth()+1 + "/" + b.getDate() + "/" + b.getFullYear()
-      if (aDate === bDate) {
-        return placement
-      } else {
-        return Date.parse(placement.period.split(",")[0]) > Date.parse(this.props.currentDate)
-      }
+      // const a = new Date(placement.period.split(",")[0])
+      // const b = new Date(this.props.currentDate)
+      // const aDate = a.getMonth()+1 + "/" + a.getDate() + "/" + a.getFullYear()
+      // const bDate = b.getMonth()+1 + "/" + b.getDate() + "/" + b.getFullYear()
+      return Date.parse(placement.period.split(",")[0]) > Date.parse(this.props.currentDate)
     })
+
     //if none in future, status should be "AWAITING PLACEMENT"
     if (futurePlacements.length === 0) {
-      return <p>Status: AWAITING PLACEMENT</p>
+      return <p style={{color: 'red'}}>Status: AWAITING PLACEMENT</p>
     //if in future, check if any have status of "approved"
     } else {
       const approvedPlacements = futurePlacements.filter(placement => {
@@ -87,14 +84,14 @@ class CaseCard extends React.Component {
       })
       //if NO, show Status as "REQUEST PENDING"
       if (approvedPlacements.length === 0){
-        return <p>Status: REQUEST PENDING</p>
+        return <p style={{color: 'blue'}}>Status: REQUEST PENDING</p>
       //if YES, select the next occuring placement, show Status as "MATCHED", and include #days until next match start date & end date
       } else {
         const sortedPlacements = approvedPlacements.sort((a,b) => Date.parse(a.period.split(",")[0]) < Date.parse(b.period.split(",")[0]) ? -1 : 1)
         const nextPlacement = sortedPlacements[0]
         return (
           <React.Fragment>
-          <p>Status: MATCHED</p>
+          <h5 style={{color: 'green'}}>Status: MATCHED</h5>
           <p>Days until next placement: {this.calculateDiffDays(nextPlacement.period.split(",")[0])} days</p>
           <p>Days until end of next placement: {this.calculateDiffDays(nextPlacement.period.split(",")[1])} days</p>
 
@@ -136,23 +133,41 @@ class CaseCard extends React.Component {
     })
   }
 
+  renderPlacementPeriod(){
+    const start = new Date(this.props.placement.period.split(",")[0])
+    const end = new Date(this.props.placement.period.split(",")[1])
+    const convertedStart = start.getMonth()+1 + "/" + start.getDate() + "/" + start.getFullYear()
+    const convertedEnd = end.getMonth()+1 + "/" + end.getDate() + "/" + end.getFullYear()
+
+    return (<p className="casecard-placement-period">From {convertedStart} to {convertedEnd}</p>)
+  }
+
   render(){
     return(
-      <div onClick={this.props.userType === 'host' ? ()=>this.updatePlacementAndRedirect() : ()=> this.setUserAndRedirect()} className="listingcard">
-      <div className="listingcard-image-title">
-      <img src={this.props.caseObj.image_url} alt="case profile"/>
-      </div>
-      <p>Case #: {this.props.caseObj.id}</p>
-      <p>Number of Members: {this.props.caseObj.num_members}</p>
-      <p>Guest Type: {this.props.caseObj.guest_type}</p>
-      <p>Creation Date: {this.renderDate(this.props.caseObj.created_at)}</p>
-      {this.props.userType === 'host' ? <p>{this.props.placement.status}</p> : null}
-      <div className="validate-cancel-buttons">
-      {this.props.userType === 'host' && this.props.placement.status === 'pending'? <button onClick={this.validateRequest}>VALIDATE REQUEST</button> : null}
-      {this.props.userType === 'host' && this.props.placement.status === 'pending'? <button onClick={this.cancelRequest}>CANCEL REQUEST</button> : null}
-      </div>
-      {this.props.userType === 'host' && this.props.placement.status === 'approved' ? <p>{this.props.placement.period}</p> : null}
-      {this.props.userType === 'caseworker' ? this.renderStatus(): null}
+      <div className="listingcard">
+        <div onClick={this.props.userType === 'host' ? ()=>this.updatePlacementAndRedirect() : ()=> this.setUserAndRedirect()}>
+          <div className='listingcard-title-address'>
+            <h4>CASE ID # {this.props.caseObj.id}</h4>
+            <h5>Guest Type: {this.props.caseObj.guest_type}</h5>
+          </div>
+          <div className="listingcard-image-title">
+              <img src={this.props.caseObj.image_url} alt="case profile"/>
+            <div className="casecard-details">
+              <p>Number of Members: {this.props.caseObj.num_members}</p>
+              <p>Guest Type: {this.props.caseObj.guest_type}</p>
+              <p>Creation Date: {this.renderDate(this.props.caseObj.created_at)}</p>
+              {this.props.userType === 'host' ? <p style={{fontWeight: 'bold'}}>{this.props.placement.status.toUpperCase()}</p> : null}
+            </div>
+          </div>
+        </div>
+          <div className="validate-cancel-buttons">
+            {this.props.userType === 'host' && this.props.placement.status === 'pending'? <button onClick={this.validateRequest}>VALIDATE REQUEST</button> : null}
+            {this.props.userType === 'host' && this.props.placement.status === 'pending'? <button onClick={this.cancelRequest}>CANCEL REQUEST</button> : null}
+          </div>
+        <div className='casecard-status-container'>
+          {this.props.userType === 'host' ? this.renderPlacementPeriod() : null}
+          {this.props.userType === 'caseworker' ? this.renderStatus(): null}
+        </div>
       </div>
     )
   }

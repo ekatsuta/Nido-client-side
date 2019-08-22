@@ -18,7 +18,7 @@ class ListingSuggestions extends React.Component{
     })
 
     if(pendingListings.length ===0){
-      return <p>None</p>
+      return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
     }
 
     return pendingListings.map(listing => {
@@ -38,11 +38,12 @@ class ListingSuggestions extends React.Component{
     })
 
     if(approvedListings.length ===0){
-      return <p>None</p>
+      return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
     }
 
     return approvedListings.map(listing => {
-      return <ListingCard history={this.props.history} listing={listing}/>
+      const booking = foundPlacements.find(placement => placement.listing_id === listing.id)
+      return <ListingCard history={this.props.history} listing={listing} placement={booking}/>
     })
   }
 
@@ -58,7 +59,7 @@ class ListingSuggestions extends React.Component{
     })
 
     if(pastListings.length ===0){
-      return <p>None</p>
+      return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
     }
 
     return pastListings.map(listing => {

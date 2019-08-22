@@ -5,12 +5,20 @@ import {generateMSP} from '../actions/msp_template'
 
 class Stats extends React.Component {
 
+  // componentDidUpdate(prevProps, prevState){
+  //   if (prevProps.data !== this.props.data) {
+  //     this.setState({
+  //       chartData: {...this.state.chartData, datasets: [{...this.state.chartData.datasets[0], data: this.props.data}]}
+  //     })
+  //   }
+  // }
+
   state = {
     chartData: {
       labels: this.props.userType === 'host' ? ['Approved', 'Pending', 'Cancelled'] : ['Approved', 'Pending', 'Cancelled', 'Need Placement'],
       datasets: [
         {
-          label: 'Number of Cases',
+          label: 'Number of Placements',
           data: this.props.data,
           backgroundColor: [
             'rgba(255, 99, 132, 0.6)',
@@ -27,18 +35,13 @@ class Stats extends React.Component {
         {
           label: 'Number of Cases',
           data: (this.props.guestData ? this.props.guestData.dataArr : null),
-          backgroundColor: "blue"
-        }
-      ]
-    },
-    creationData: {
-      labels: (this.props.creationData ? this.props.creationData.labelArr.map(date => new Date(date)) : null),
-      datasets: [
-        {
-          label: 'Number of Cases',
-          fill: false,
-          data: (this.props.creationData ?this.props.creationData.dataArr : null),
-          backgroundColor: "blue"
+          backgroundColor: [
+            '#D6E4FE',
+            '#BBD1FD',
+            '#86A8FA',
+            '#577DF5',
+            '#304FED'
+          ]
         }
       ]
     }
@@ -63,10 +66,25 @@ class Stats extends React.Component {
 
   render(){
 
+    const chartData = {
+      labels: this.props.userType === 'host' ? ['Approved', 'Pending', 'Cancelled'] : ['Approved', 'Pending', 'Cancelled', 'Need Placement'],
+      datasets: [
+        {
+          label: 'Number of Placements',
+          data: this.props.data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(240, 192, 192, 0.6)'
+          ]
+        }
+      ]
+    }
     return(
       <div className="stats-container">
         <Bar
-          data={this.state.chartData}
+          data={chartData}
           width={70}
           height={30}
           options={{

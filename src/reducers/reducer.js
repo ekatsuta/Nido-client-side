@@ -314,7 +314,8 @@ function reducer(prevState=defaultState, action){
 
       return {...prevState, cases: updatedCases}
     case "APPROVE_OR_CANCEL_PLACEMENT":
-      let updatedPlacements = prevState.placements.map(placement => {
+      let copyPlacements = [...prevState.placements]
+      let updatedPlacements = copyPlacements.map(placement => {
         if (placement.id === action.payload.id){
           return action.payload
         } else {
@@ -334,23 +335,26 @@ function reducer(prevState=defaultState, action){
           return placement
         }
       })
-      foundCaseObj.placements = newPlacements
+
+      let newCaseInstance = {...foundCaseObj, placements: newPlacements}
 
       const newCaseObjs = prevState.allCases.map(caseObj => {
         if (caseObj.id === foundCaseObj.id) {
-          return foundCaseObj
+          return newCaseInstance
         } else {
           return caseObj
         }
       })
 
+      debugger
       return {...prevState, placements: updatedPlacements, allCases: newCaseObjs}
     case "UPDATE_PLACEMENT":
       let foundCase = prevState.cases.find(caseObj => caseObj.id === action.payload.case_id)
-      foundCase.placements.push(action.payload)
+      let newCase = {...foundCase, placements: [...foundCase.placements, action.payload]}
+
       const updatedCaseObjs = prevState.cases.map(caseObj => {
-        if (caseObj.id === foundCase.id) {
-          return foundCase
+        if (caseObj.id === newCase.id) {
+          return newCase
         } else {
           return caseObj
         }

@@ -338,7 +338,7 @@ background-color: rgb(237, 213, 150);
 .deservehome {
   position: absolute;
   z-index: 3;
-  top: 1256px;
+  top: 1372px;
   font-size: 30px;
   left: 45px;
   color: white;
@@ -387,34 +387,59 @@ background-color: rgb(237, 213, 150);
   padding: 1%;
 }
 
-.card-container {
+.tainer {
   display: flex;
   flex-direction: column;
   width: 100%;
   float: right;
   align-items: center;
-  padding-top: 5%
+  padding: 5% 1%;
 }
 
 .listingcard {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   justify-content: center;
   padding: 5%;
-  box-shadow: 1px 8px 17px -3px rgba(0,0,0,0.4);;
+  box-shadow: 1px 8px 17px -3px rgba(0,0,0,0.4);
+  background-color: white;
+  margin: 2% 0%;
+}
+
+.listingcard-title-address {
+  background-color: lightyellow;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
 }
 
 .listingcard h4 {
-  font-size: 10px
+  font-size: 12px;
+  color: black;
+  font-weight: bold;
+  margin: 3.5px;
+}
+
+.listingcard h5 {
+  font-size: 10px;
+  color: #4e4b4b;
+  font-weight: bold;
+  margin: 5.5px;
 }
 
 .listingcard p {
-  font-size: 8px
+  font-size: 10px;
+  margin: 6.5px;
+}
+
+.listingcard h6 {
+  margin: 6px;
 }
 
 .listingcard-image-title {
-  display: flex
+  display: flex;
+  padding: 1%
 }
 
 .listingcard-image-title img {
@@ -428,16 +453,158 @@ background-color: rgb(237, 213, 150);
   flex-direction: column;
   text-align: left;
   padding: 2%;
+}
 
+.casecard-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 2%;
+  font-size: 12px;
+  justify-content: center;
+}
+
+.casecard-placement-period {
+  font-size: 10px;
+  margin: 6.5px;
+  background-color: rgb(237, 213, 150);
+  padding: 1%;
+}
+
+.casecard-details p{
+  font-size: 10px;
+  color: #292828;
+}
+
+.casecard-status-container {
+  display: flex;
+  flex-direction: column
+}
+
+.listing-profile-info-container {
+  display: flex;
+  padding: 3% 2%;
+  align-items: center
+}
+
+.case-profile-info-container {
+  display: flex;
+  border-bottom: 1px solid #eac6c6;
+  padding: 4% 0%;
 }
 
 .listing-profile-info {
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s;
   display: flex;
   align-items: baseline;
   width: 100%;
   /* flex-wrap: wrap; */
+  flex-direction: column;
   justify-content: space-around;
   padding: 1%
+}
+
+.case-profile-info {
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s;
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: space-around;
+  /* padding: 1% */
+}
+
+.caseworker-info-container {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20%;
+  width: 300px;
+  align-items: baseline
+}
+
+.caseworker-info-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin: 2%;
+}
+
+.caseworker-info-container h4 {
+  margin: 5px
+}
+
+.caseworker-info-container h5 {
+  margin: 8px;
+  font-weight: 200;
+}
+
+.caseworker-info-container button {
+  padding: 2%;
+  background-color: yellow;
+  box-shadow: 5px 5px 5px #cabebe;
+}
+
+.listing-profile-main-info {
+  display: flex;
+  width: 100vw;
+  padding-top: 3%;
+  justify-content: space-around;
+}
+
+.case-profile-main-info {
+  display: flex;
+  width: 100vw;
+  padding-top: 3%;
+  justify-content: space-around;
+}
+
+.listing-profile-additional-info {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 60%;
+  padding: 0% 3%;
+}
+
+.case-profile-additional-info {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 75%;
+  padding: 0% 3%;
+}
+
+.listing-profile-additional-info p, .case-profile-additional-info p {
+  font-size: 12px;
+  text-align: left;
+  margin: 1% 0%;
+  color: #313030;
+}
+
+.listing-profile-additional-info h6, .case-profile-additional-info h6 {
+  font-size: 12px;
+  text-align: left;
+  font-style: italic;
+  color: #464343;
+  font-weight: 200;
+  margin-top: 3%;
+  margin-bottom: 2%
+}
+
+.pending-approved-past-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .case-profile-info {
@@ -447,30 +614,95 @@ background-color: rgb(237, 213, 150);
   justify-content: space-around;
 }
 
-.listing-profile-title-pic, .case-profile-title-pic {
+.listing-profile-pic, .case-profile-pic {
   display: flex;
   flex-direction: column;
-  width: 32%
+  width: 60%;
 }
 
-.listing-profile-title-pic img,.case-profile-title-pic img {
+.listing-profile-title {
+  width: 100vw;
+  flex-direction: column;
+  display: flex;
+  border-bottom: 1px solid #eac6c6;
+  /* width: 100%; */
+  justify-content: center;
+  padding: 1%;
+}
+
+.case-profile-title {
+  width: 100vw;
+  flex-direction: column;
+  display: flex;
+  border-bottom: 1px solid #eac6c6;
+  /* width: 100%; */
+  justify-content: center;
+  padding: 1%;
+}
+
+.listing-profile-title h3, .case-profile-title h3 {
+  margin: 5px;
+}
+
+.listing-profile-title h5, .case-profile-title h5 {
+  margin: 8px;
+  color: grey;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.edit-delete-buttons a {
+  text-decoration: none;
+  color: black;
+  font-size: 9px;
+  background-color: blue;
+  color: white;
+  /* border-width: 1px; */
+  /* border-color: grey; */
+  padding: 2%;
+  margin: 1%;
+  font-weight: bold;
+  width: 20px;
+
+}
+
+.edit-delete-buttons button {
+  color: white;
+  /* border-style: solid; */
+  border-style: none;
+  background-color: blue;
+  font-weight: bold;
+  font-size: 9px;
+  height: 25.5px;
+}
+
+.listing-profile-pic img,.case-profile-pic img {
   width: 100%
 }
-
-
 
 .listing-profile-details, .case-profile-details {
   display: flex;
   flex-direction: column;
-  width: 32%;
+  width: 30%;
   font-size: 12px;
   align-items: baseline;
-  padding: 10px;
   text-align: -webkit-auto;
+  justify-content: center;
 }
 
-.listing-profile-details p {
-  font-size: 10px
+.listing-profile-detail, .case-profile-detail {
+  display: flex;
+  align-items: center;
+}
+
+.listing-profile-details p, .case-profile-detail p {
+  font-size: 11px;
+  padding-left: 10px
 }
 
 .requests-container, .cases-container {
@@ -500,12 +732,23 @@ background-color: rgb(237, 213, 150);
 
 .map-container {
   display: flex;
+  padding-top: 9%;
   justify-content: center;
-  padding: 10% 2%;
+  background-color: #fefde0;
+  background-color: white;
+}
+
+.map-listing-info {
+  z-index: 2
 }
 
 .react-calendar__tile:disabled {
-    background-color: #ccccfd !important;
+  background-color: #ccccfd !important;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column
 }
 
 .booking-container {
@@ -528,7 +771,19 @@ background-color: rgb(237, 213, 150);
   font-weight: bold;
 }
 
-.card-container button {
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  float: right;
+  align-items: center;
+  padding: 2% 1%;
+  overflow: scroll;
+  height: 500px;
+  border-left: 2px ridge #fefefe;
+}
+
+/* .card-container button {
   padding: 1%;
   margin: 2% 0%;
   width: 100px;
@@ -536,6 +791,28 @@ background-color: rgb(237, 213, 150);
   background-color: blue;
   color: white;
   font-weight: bold;
+} */
+
+.card-container-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.card-container-buttons button {
+  padding: 5%;
+  width: 100px;
+  border-radius: 25px;
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  height: 30px;
+  font-size: 8px
+}
+
+.card-container-buttons button:hover {
+  background-color: blue;
+  color: white
 }
 
 .main-profile-container {
@@ -600,7 +877,7 @@ border-radius: 200px;
 }
 
 .profile-description button {
-  padding: 5%;
+  padding: 3%;
   width: 100px;
   border-radius: 25px;
   background-color: blue;
@@ -657,17 +934,22 @@ border-radius: 200px;
 .case-listings-container {
   display: flex;
   width: 100%;
-  margin-top: 5%;
+  /* margin-top: 5%; */
   padding: 1%;
 }
 
 .listing-suggestions-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  background-color: #f4e0e0;
+}
+
+.listing-suggestions-container h4 {
   width: 100%
 }
 
-.pending-approved-past-container {
+.roved-past-container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -691,14 +973,25 @@ border-radius: 200px;
   font-size: 20px;
   padding: 10%;
   width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  background-color: #f9f9e3;
+}
+
+.question-yes-skip button:hover {
+  background-color: #ffa5f8;
+  color: white;
+  border-style: solid;
+  border-color: white
 }
 
 .filter-options-container button{
-  border-radius: 25px;
+  /* border-radius: 25px; */
   background-color: blue;
   color: white;
   font-weight: bold;
-  padding: 0
+  padding: 2px;
+  margin: 2%
 }
 
 /* .filter-options-container select {
@@ -709,11 +1002,29 @@ border-radius: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 32%;
+  width: 35%;
+}
+
+.listing-profile-host-info button {
+  padding: 2%;
+  margin: 1%;
+  background-color: yellow;
+  box-shadow: 5px 5px 5px #cabebe;
+}
+
+.listing-profile-host-info h3 {
+  font-size: 12px;
+}
+
+.listing-profile-host-info p {
+  font-size: 14px;
+  margin: 1%;
 }
 
 .listing-profile-host-info img {
-  width: 50%
+  width: 100px;
+  height: 100px;
+  border-radius: 100px
 }
 
 .listinginfo-container {
@@ -725,7 +1036,7 @@ border-radius: 200px;
 
 .listinginfo-container h4 {
   width: 100%;
-  background: #fbffc0;
+  /* background: #fbffc0; */
 }
 
 .pending-lists, .approved-lists, .past-lists {
@@ -735,19 +1046,26 @@ border-radius: 200px;
   align-items: center;
   width: 90%;
   padding: 1%;
+  background-color: #f4e0e0;
 }
 
 .booked-marker {
-  background: #e0a4a4;
+  background: pink;
   opacity: 0.7;
   width: 30%;
   display: flex;
   justify-content: center;
+  font-size: 12px;
 }
 
 .booked {
-  background: #e0a4a4 !important;
+  background-color: pink !important;
   opacity: 0.7 !important
+}
+
+.approved {
+  background-color: pink !important;
+  opacity: 0.7
 }
 
 .leaflet-container {
@@ -790,19 +1108,35 @@ border-radius: 200px;
 .sort-options-container {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 100%;
   justify-content: flex-end;
-  padding: 2%;
+  background-color: #e8dede;
+  padding: 1%;
+  margin: 1%;
 }
+
+.sort-options-container select, .sort-options-container input {
+  margin: 5px
+}
+
+/* .sort-dropdown-button button {
+  width: 150px;
+  padding: 1%;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border-radius: 0;
+  margin: 0;
+} */
 
 .filter-options-container {
   display: flex;
   /* padding: 0 0 8%; */
   width: 100%;
   justify-content: flex-end;
-  padding-right: 11%;
+  /* padding-right: 11%;
   padding-top: 2%;
-  padding-bottom: 2%;
+  padding-bottom: 2%; */
   align-items: baseline
 }
 
@@ -1079,6 +1413,19 @@ background-color: #fff;
   width: 100%
 }
 
+.message-title {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  background-color: #e4e4e8;
+  position: fixed;
+}
+
+.message-title p{
+  text-align: center;
+  font-size: 10px
+}
+
 .conversation-container {
   display: flex;
   width: 30%;
@@ -1098,6 +1445,12 @@ background-color: #fff;
   height: 80vh;
   background-color: #f0fbff;
   overflow: scroll
+}
+
+.message-container {
+  padding-top: 7%;
+  background-color: #f0fbff;
+  height: 100vh;
 }
 
 .newmessage-container {
@@ -1129,6 +1482,21 @@ background-color: #fff;
   padding: 1%
 }
 
+.newlisting-container, .newcase-container {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 4% */
+}
+
+.newlisting-container img, .newcase-container img {
+  width: 40%;
+  opacity: 0.5
+}
+
 .my-message {
   margin: 1%;
   background-color: blue;
@@ -1148,9 +1516,9 @@ background-color: #fff;
 
 .receiving-message {
   margin: 1%;
-  background-color: pink;
+  background-color: lightblue;
   padding: 9px;
-  color: white;
+  color: black;
   display: flex;
   width: 50%;
   justify-content: center;
@@ -1180,7 +1548,7 @@ background-color: #fff;
 }
 
 .message-list p {
-  font-size: 14px;
+  font-size: 10px;
   text-align: left;
   padding-left: 1%;
 

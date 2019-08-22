@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMapGL, {Marker} from 'react-map-gl'
+import ListingCard from '../host/ListingCard'
 
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
@@ -19,22 +20,22 @@ class Map extends React.Component {
     }
   };
 
-  //need an array of latitude, longitude, map over and return below
-  //<Marker key={id} latitude={} longitude={}>Image here(icon)</Marker>
 
   renderMarkers(){
     return this.props.allListings.map(listing => {
       return (
         <Marker latitude={parseFloat(listing.latitude)} longitude={parseFloat(listing.longitude)}>
-          <img onClick={()=>this.props.history.push(`/listings/${listing.id}`)} src="https://img.icons8.com/officel/16/000000/marker.png"/>
+          <img onClick={()=> this.props.history.push(`/listings/${listing.id}`)} src="https://img.icons8.com/officel/16/000000/marker.png"/>
         </Marker>
       )
     })
   }
 
+
+
   render() {
     return (
-      <div className='map-container'>
+      <div className='map-container' >
       <ReactMapGL mapboxApiAccessToken="pk.eyJ1IjoiZWthdHN1dGEiLCJhIjoiY2p6Y3NkaTB3MDk5czNscjAybnExOWVsayJ9.60d9hzRE5skVKsj6jsAV_w"
         {...this.state.viewport}
         onViewportChange={(viewport) => this.setState({viewport})}

@@ -6,8 +6,12 @@ import {updateReadMessages} from '../actions/actions'
 
 class MessageList extends React.Component {
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "auto" });
+  }
+
   componentDidMount(){
-    // window.scrollTo(0, 1000)
+    this.scrollToBottom();
     fetch(`http://localhost:3000/readMessage/${this.props.currentConversation.id}`, {
       method: "PATCH",
       headers: {
@@ -24,8 +28,12 @@ class MessageList extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   renderMessage(){
-    if (!this.props.currentConversation){
+    if (this.props.currentConversation.length === 0){
       if (this.props.conversations.length === 0) {
         return (
           <div>Currently No Messages</div>
@@ -36,22 +44,35 @@ class MessageList extends React.Component {
           return <Message message={message} key={message.id}/>
         })
       }
-    }
-    if (this.props.currentConversation.messages.length > 0)
+    } else if (this.props.currentConversation.messages.length > 0) {
       return this.props.currentConversation.messages.map(message => {
         return <Message message={message} key={message.id}/>
       })
-    else
+
+    } else {
       return (
         <div>Currently No Messages</div>
       )
+    }
   }
 
   renderTitle() {
+    if (!this.props.currentMessage) {
+      if (this.props.conversations.length === 0) {
+        return null
+      } else {
+        const showConversation = this.props.conversations[0]
+        if (showConversation.sender.id === this.props.currentUser.id) {
+          return <div className="message-title"><p>To: {this.props.currentConversation.recipient.name}</p></div>
+        } else {
+          return <div className="message-title"><p>To: {this.props.currentConversation.sender.name}</p></div>
+        }
+      }
+    }
     if (this.props.currentConversation.sender.id === this.props.currentUser.id) {
-      return <p>To: {this.props.currentConversation.recipient.name}</p>
+      return <div className="message-title"><p>To: {this.props.currentConversation.recipient.name}</p></div>
     } else {
-      return <p>To: {this.props.currentConversation.sender.name}</p>
+      return <div className="message-title"><p>To: {this.props.currentConversation.sender.name}</p></div>
     }
   }
 
@@ -59,7 +80,12 @@ class MessageList extends React.Component {
     return(
       <div className="message-list">
       {this.renderTitle()}
+      <div className="message-container">
       {this.renderMessage()}
+        <div style={{ float:"left", clear: "both" }}
+            ref={(el) => { this.messagesEnd = el; }}>
+        </div>
+      </div>
       </div>
     )
   }

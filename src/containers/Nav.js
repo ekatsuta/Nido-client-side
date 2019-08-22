@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../actions/actions'
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
+import nest from '../images/nest.png'
 
 class Nav extends React.Component {
 

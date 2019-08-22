@@ -12,7 +12,9 @@ class ListingCardContainer extends React.Component{
     sortCapacity: 0,
     sortProvision: null,
     sortGuestPreference: null,
-    currentListings: this.props.allListings
+    sortChildren: null,
+    currentListings: this.props.allListings,
+    sortProps: false
   }
 
   mapListing = (listingArr) => {
@@ -65,6 +67,7 @@ class ListingCardContainer extends React.Component{
   }
 
   handleChange = event => {
+    debugger
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -96,7 +99,8 @@ class ListingCardContainer extends React.Component{
       sortHousehold: null,
       sortCapacity: 0,
       sortProvision: null,
-      sortGuestPreference: null
+      sortGuestPreference: null,
+      sortChildren: null
     })
   }
 
@@ -114,6 +118,7 @@ class ListingCardContainer extends React.Component{
           <option value="" disabled selected hidden>Filter By Household Type</option>
         {this.renderHouseholdOptions()}
         </select>
+
 
         <input type="number" name="sortCapacity" onChange={this.handleChange} value={this.state.sortCapacity} placeholder="Minimum Capacity"/>
 
@@ -135,11 +140,14 @@ class ListingCardContainer extends React.Component{
   }
 
   render(){
-    console.log("CHECK ON RENDER OF LISTING", this.props.allListings,)
+    console.log("CHECK ON RENDER OF LISTING", this.state)
     return(
       <div className="card-container">
-        {this.props.userType === 'host' ? <Link to="/listingquestions"><button className="add-button">ADD LISTING</button></Link> : null}
-        {this.props.userType === 'caseworker' ? this.renderSortOptions() : null}
+        <div className="card-container-buttons">
+          {this.props.userType === 'host' ? <Link to="/listingquestions"><button className="add-button">ADD LISTING</button></Link> : null}
+          <div className='sort-dropdown-button'>{this.props.userType === 'caseworker' ? <button  onClick={()=>this.setState({sortProps: !this.state.sortProps})}>SHOW FILTER OPTIONS</button> : null}</div>
+        </div>
+          {this.props.userType === 'caseworker' && this.state.sortProps ? this.renderSortOptions() : null}
         {this.renderListingCard()}
       </div>
     )

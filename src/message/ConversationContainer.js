@@ -7,7 +7,7 @@ import {generateMSP} from '../actions/msp_template'
 const ConversationContainer = props => {
 
   function renderConversations(){
-    debugger
+    
     if (props.conversations.length === 0) {
       return <div>No Conversations</div>
     }

@@ -3,7 +3,6 @@ import ReactFilestack from 'filestack-react';
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 import {addListing, addToAllListing} from '../actions/actions'
-import Flickity from 'react-flickity-component'
 import caseImg from '../images/caseImg.svg'
 import listing from '../images/listing.svg'
 import profile from '../images/profile.svg'
@@ -30,7 +29,7 @@ class NewListingQuestions extends React.Component {
     guest_preference: '',
     children: null,
     provisions: [],
-    img_url: "https://cdn.filestackcontent.com/7GIpMWTnQnWBuZXKRTI0",
+    img_url: [],
     currentSlide: 0,
   }
 
@@ -379,8 +378,9 @@ class NewListingQuestions extends React.Component {
           <ReactFilestack
           apikey={"ASRKTt2smQC6FJUSI8YrSz"}
           onSuccess={(res) => {
+            debugger
             this.setState({
-              img_url: res.filesUploaded[0].url
+              img_url: [...this.state.img_url, res.filesUploaded[0].url]
             })
           }}
           />

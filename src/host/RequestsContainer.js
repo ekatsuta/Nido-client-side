@@ -10,7 +10,7 @@ class RequestsContainer extends React.Component {
     const approved = this.getNumByStatus("approved")
     const pending = this.getNumByStatus("pending")
     const cancelled = this.getNumByStatus("cancelled")
-
+    
     return [approved, pending, cancelled]
   }
 

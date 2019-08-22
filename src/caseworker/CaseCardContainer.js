@@ -11,7 +11,8 @@ class CaseCardContainer extends React.Component {
     guest_type: null,
     num_members: 0,
     cases: this.props.cases,
-    sortOption: null
+    sortOption: null,
+    sortProps: false
   }
 
   handleChange = event => {
@@ -125,6 +126,7 @@ class CaseCardContainer extends React.Component {
       }
     }
   }
+  
   renderFilterOptions(){
     return (
       <div className='filter-options-container'>
@@ -161,9 +163,12 @@ class CaseCardContainer extends React.Component {
   render(){
     return (
       <div className="card-container">
-        <Link to="/casequestions"><button className="add-button">ADD CASE</button></Link>
-        {this.renderFilterOptions()}
-        {this.renderSortOptions()}
+        <div className="card-container-buttons">
+          <Link to="/casequestions"><button className="add-button">ADD CASE</button></Link>
+          <div className='sort-dropdown-button'>{this.props.userType === 'caseworker' ? <button  onClick={()=>this.setState({sortProps: !this.state.sortProps})}>SHOW FILTER OPTIONS</button> : null}</div>
+        </div>
+        {this.state.sortProps ? this.renderFilterOptions() : null}
+        {this.state.sortProps ? this.renderSortOptions() : null}
         {this.renderCaseCard()}
       </div>
     )

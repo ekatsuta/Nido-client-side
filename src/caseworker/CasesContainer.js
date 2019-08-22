@@ -19,16 +19,11 @@ class CasesContainer extends React.Component {
       }
       for (let j = 0; j < this.props.cases[i].placements.length; j ++) {
         let thisPlacement = this.props.cases[i].placements[j]
-        const a = new Date(thisPlacement.period.split(",")[0])
-        const b = new Date(this.props.currentDate)
-        const aDate = a.getMonth()+1 + "/" + a.getDate() + "/" + a.getFullYear()
-        const bDate = b.getMonth()+1 + "/" + b.getDate() + "/" + b.getFullYear()
-        debugger
-        if (aDate === bDate) {
-          awaiting.push(thisPlacement)
-        } else if (Date.parse(thisPlacement.period.split(",")[0]) < Date.parse(this.props.currentDate)) {
-          awaiting.push(thisPlacement)
-        } else if (thisPlacement.status === 'approved') {
+        // const a = new Date(thisPlacement.period.split(",")[0])
+        // const b = new Date(this.props.currentDate)
+
+        //if all placements are in the past, should push to awaiting
+        if (thisPlacement.status === 'approved') {
           approved.push(thisPlacement)
         } else if (thisPlacement.status === 'pending') {
           pending.push(thisPlacement)
@@ -38,19 +33,8 @@ class CasesContainer extends React.Component {
       }
     }
 
-    //check for empty placement Arrays
-
-
     return [approved.length, pending.length, cancelled.length, awaiting.length]
-
   }
-
-  // getNumByStatus(status){
-  //   const placements = this.props.placements.filter(placement => {
-  //     return placement.status === status
-  //   })
-  //   return placements.length
-  // }
 
 
   renderGuestData(){
