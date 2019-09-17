@@ -1,4 +1,4 @@
-# Ellis App
+# NIDO App
 
 **Final Project for [Flatiron School](https://flatironschool.com/) Module 5 (React.Js, Redux & Ruby on Rails)**
 
