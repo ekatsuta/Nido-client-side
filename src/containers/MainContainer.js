@@ -45,12 +45,12 @@ class MainContainer extends React.Component {
       return (
         <div className="main-container">
         <Switch>
+        <Route exact path="/" render={(routerProps) => <Login {...routerProps}/>}/>
         <Route exact path="/home" render={(routerProps) => <UserPage {...routerProps}/>}/>
         <Route exact path="/profile" render={(routerProps) => <Profile {...routerProps}/>}/>
         <Route exact path="/cases" render={(routerProps) => <CasesContainer {...routerProps}/>}/>
         <Route exact path="/listings" render={(routerProps) => <ListingsContainer {...routerProps}/>}/>
         <Route exact path="/requests" render={(routerProps) => <RequestsContainer {...routerProps}/>}/>
-        <Route exact path="/login" render={(routerProps) => <Login {...routerProps}/>}/>
         <Route exact path="/signup" render={(routerProps) => <Signup {...routerProps}/>}/>
         <Route exact path="/newcase" render={(routerProps) => <NewCase {...routerProps}/>}/>
         <Route exact path="/newlisting" render={(routerProps) => <NewListing {...routerProps}/>}/>
