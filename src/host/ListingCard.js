@@ -5,6 +5,8 @@ import legal from '../images/provisions/legal.png'
 import food from '../images/provisions/food.png'
 import language from '../images/provisions/language.png'
 import transportation from '../images/provisions/transportation.png'
+import {connect} from 'react-redux'
+import {generateMSP} from '../actions/msp_template'
 
 class ListingCard extends React.Component {
 
@@ -72,6 +74,15 @@ class ListingCard extends React.Component {
     })
   }
 
+  renderPlacementPeriod(){
+    const start = new Date(this.props.placement.period.split(",")[0])
+    const end = new Date(this.props.placement.period.split(",")[1])
+    const convertedStart = start.getMonth()+1 + "/" + start.getDate() + "/" + start.getFullYear()
+    const convertedEnd = end.getMonth()+1 + "/" + end.getDate() + "/" + end.getFullYear()
+
+    return (<p className="casecard-placement-period">From {convertedStart} to {convertedEnd}</p>)
+  }
+
   render(){
     return(
       <div onClick={() => this.redirect(this.props.listing.id)} className="listingcard">
@@ -102,4 +113,4 @@ class ListingCard extends React.Component {
   }
 }
 
-export default ListingCard
+export default connect(generateMSP(["userType"]))(ListingCard)

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {setUser} from '../actions/actions'
 import default_profile from '../images/default_profile.png'
 import {generateMSP} from '../actions/msp_template'
+import ReactFilestack from 'filestack-react';
 
 
 class UserProfile extends React.Component {
@@ -82,7 +83,15 @@ class UserProfile extends React.Component {
             <input type="text" name="name" onChange={this.handleInput} value={this.state.name} placeholder="Name"/>
             <input type="text" name="username" onChange={this.handleInput} value={this.state.username} placeholder="Username"/>
             <textarea type="text" name="description" onChange={this.handleInput} value={this.state.description} placerholder="Description"/>
-            <input type="text" name="profile_image" onChange={this.handleInput} value={this.state.profile_image} placeholder="Profile Image"/>
+
+            <ReactFilestack
+            apikey={"ASRKTt2smQC6FJUSI8YrSz"}
+            onSuccess={(res) => {
+              this.setState({
+                profile_image: res.filesUploaded[0].url
+              })
+            }}
+            />
             <input type="submit" value="Save"/>
           </form>
           </div>

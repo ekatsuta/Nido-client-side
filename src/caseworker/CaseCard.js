@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 import {approveOrCancelPlacement, setCase, checkPlacement} from '../actions/actions'
-
+import case_image from '../images/default_case_img.jpg'
 
 class CaseCard extends React.Component {
 
@@ -151,7 +151,7 @@ class CaseCard extends React.Component {
             <h5>Guest Type: {this.props.caseObj.guest_type}</h5>
           </div>
           <div className="listingcard-image-title">
-              <img src={this.props.caseObj.image_url} alt="case profile"/>
+              {this.props.caseObj.image_url ? <img src={this.props.caseObj.image_url} alt="case profile"/> : <img src={case_image}/>}
             <div className="casecard-details">
               <p>Number of Members: {this.props.caseObj.num_members}</p>
               <p>Guest Type: {this.props.caseObj.guest_type}</p>

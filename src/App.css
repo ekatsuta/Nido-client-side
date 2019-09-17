@@ -225,7 +225,7 @@ body {
 }
 
 .login-interface p, .signup-interface p {
-  font-size: 16px;
+  font-size: 18px;
   width: 80%;
   font-style: italic;
   color: grey;
@@ -378,7 +378,7 @@ background-color: rgb(237, 213, 150);
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #e8dddf
+  background-color: #f1d9dd
 }
 
 .question {
@@ -865,8 +865,9 @@ background-color: rgb(237, 213, 150);
 
 .profile-image-and-names img {
   width: 200px;
-height: 200px;
-border-radius: 200px;
+  height: 200px;
+  border-radius: 200px;
+  margin: 2%
 }
 
 .profile-description {
@@ -920,6 +921,7 @@ border-radius: 200px;
   width: 100%;
   margin: 1%
 }
+
 
 .casepage-container {
   display: flex;
@@ -1159,7 +1161,7 @@ border-radius: 200px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5%;
+  padding: 10% 5%;
 }
 
 .carousel-cell input {
@@ -1174,13 +1176,14 @@ border-radius: 200px;
 }
 
 button.filestack-react {
-  padding: 10%;
+  padding: 3%;
   width: 100px;
+  background-color: #f0f5fb;
 }
 
 .carousel-cell input[type="submit"]{
   position: fixed;
-    top: 300px;
+    top: 400px;
     right: 50px;
     width: 100px;
     height: 100px;
@@ -1201,6 +1204,7 @@ button.filestack-react {
   height: 100px
 }
 
+
 .carousel-cell select {
   height: 30px;
   /* background-color: #f7d69b; */
@@ -1209,7 +1213,7 @@ button.filestack-react {
 
 .next-button button {
   position: fixed;
-  top: 300px;
+  top: 400px;
   right: 50px;
   width: 100px;
   height: 100px;
@@ -1223,7 +1227,7 @@ button.filestack-react {
 
 .back-button button {
   position: fixed;
-  top: 300px;
+  top: 400px;
   left: 50px;
   width: 100px;
   height: 100px;
@@ -1251,6 +1255,8 @@ button.filestack-react {
 
 .question-field {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .radio-options {
@@ -1334,7 +1340,8 @@ background-color: #fff;
 .specify-other {
   display: flex;
   justify-content: center;
-  width: 100%
+  width: 100%;
+  margin: 2%;
 }
 
 .specify-other p {
@@ -1417,7 +1424,7 @@ background-color: #fff;
   display: flex;
   justify-content: end;
   width: 100%;
-  background-color: #e4e4e8;
+  background-color: #fffdf5;
   position: fixed;
 }
 
@@ -1431,6 +1438,18 @@ background-color: #fff;
   width: 30%;
   height: 100vh;
   flex-direction: column
+}
+
+.conversation-details-container {
+  display: flex;
+      width: 100%;
+}
+
+.unread-message-count {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: yellow
 }
 
 .messagelist-newmessage {
@@ -1558,6 +1577,13 @@ background-color: #fff;
   font-size: 10px;
   margin: 3%;
   color: #504d4d;
+  width: 20px;
+  float: right;
+  height: 20px;
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .conversation-item h6 {

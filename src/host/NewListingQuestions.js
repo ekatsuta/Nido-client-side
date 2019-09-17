@@ -8,6 +8,7 @@ import listing from '../images/listing.svg'
 import profile from '../images/profile.svg'
 
 
+
 const TOKEN = "=pk.eyJ1IjoiZWthdHN1dGEiLCJhIjoiY2p6Y3NkaTB3MDk5czNscjAybnExOWVsayJ9.60d9hzRE5skVKsj6jsAV_w"
 
 
@@ -47,7 +48,7 @@ class NewListingQuestions extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    debugger
+
     const search = encodeURI(this.state.address)
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?autocomplete=true&access_token=pk.eyJ1IjoiZWthdHN1dGEiLCJhIjoiY2p6Y3NkaTB3MDk5czNscjAybnExOWVsayJ9.60d9hzRE5skVKsj6jsAV_w`)
     .then(resp => resp.json())
@@ -378,7 +379,6 @@ class NewListingQuestions extends React.Component {
           <ReactFilestack
           apikey={"ASRKTt2smQC6FJUSI8YrSz"}
           onSuccess={(res) => {
-            debugger
             this.setState({
               img_url: [...this.state.img_url, res.filesUploaded[0].url]
             })

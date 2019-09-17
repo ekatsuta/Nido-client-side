@@ -346,7 +346,7 @@ function reducer(prevState=defaultState, action){
         }
       })
 
-      debugger
+      
       return {...prevState, placements: updatedPlacements, allCases: newCaseObjs}
     case "UPDATE_PLACEMENT":
       let foundCase = prevState.cases.find(caseObj => caseObj.id === action.payload.case_id)

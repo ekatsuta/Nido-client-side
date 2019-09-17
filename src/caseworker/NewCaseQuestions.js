@@ -3,6 +3,9 @@ import ReactFilestack from 'filestack-react';
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 import {addCase} from '../actions/actions'
+import capacity from '../images/bullet-points/capacity.png'
+import language from '../images/provisions/language.png'
+import admin from '../images/provisions/admin.png'
 
 class NewCaseQuestions extends React.Component {
   state = {
@@ -105,6 +108,7 @@ class NewCaseQuestions extends React.Component {
           <div></div>
           <input type="number" name="num_members" value={this.state.num_members} onChange={this.handleInput} placeholder="Number of Members"/>
         </div>
+        <img style={{width: '100px', margin: '5%', opacity: '0.7'}} src={capacity}/>
         <div className="next-button">
           <button onClick={this.nextSlide}>NEXT</button>
         </div>
@@ -212,6 +216,7 @@ class NewCaseQuestions extends React.Component {
                 return <option value={language}>{language}</option>
               })}
             </select>
+            <img style={{width: '100px', margin: '5%', opacity: '0.7'}} src={language}/>
             <div className="next-button">
               <button onClick={this.nextSlide}>NEXT</button>
             </div>
@@ -224,12 +229,14 @@ class NewCaseQuestions extends React.Component {
       case 4:
       return (
         <div className="carousel-cell">
-          <h3>Add any special notes, if any.</h3>
+          <h3>Add special notes, if any.</h3>
           <div className='question-field'>
           <div className="back-button">
             <button title="back" onClick={this.previousSlide}>BACK</button>
           </div>
         <textarea name="special_notes" value={this.state.special_notes} onChange={this.handleInput} placeholder="Special Notes"/>
+          <img style={{width: '100px', margin: '5%', opacity: '0.7'}} src={admin}/>
+
           <div className="next-button">
             <button onClick={this.nextSlide}>NEXT</button>
           </div>
@@ -239,7 +246,7 @@ class NewCaseQuestions extends React.Component {
       case 5:
       return (
         <div className="carousel-cell">
-        <h3>Upload Image(s) of your listing</h3>
+        <h3>Upload Image(s) of your case (optional)</h3>
         <div className='question-field'>
         <div className="back-button">
           <button title="back" onClick={this.previousSlide}>BACK</button>

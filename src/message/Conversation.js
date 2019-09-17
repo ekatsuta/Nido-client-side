@@ -65,7 +65,7 @@ class Conversation extends React.Component {
     if (unreadMessageCount === 0){
       return null
     } else {
-      return <p>{unreadMessageCount}</p>
+      return <p className='unread-message-count'>{unreadMessageCount}</p>
     }
   }
 
@@ -73,8 +73,10 @@ class Conversation extends React.Component {
     return(
       <div className="conversation-item" onClick={this.triggerNewConversation}>
         {this.renderRecipientInfo()}
+        <div className="conversation-details-container">
         {this.renderLastMessage()}
         {this.renderUnreadCount()}
+        </div>
       </div>
     )
   }

@@ -67,7 +67,6 @@ class ListingCardContainer extends React.Component{
   }
 
   handleChange = event => {
-    debugger
     this.setState({
       [event.target.name]: event.target.value
     })

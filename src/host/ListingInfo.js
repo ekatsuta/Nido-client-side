@@ -14,7 +14,7 @@ class ListingInfo extends React.Component{
       const caseObj = this.props.allCases.find(caseInstance => {
         return caseInstance.id === placement.case_id
       })
-      return <CaseCard caseObj={caseObj} placement={placement}/>
+      return <CaseCard history={this.props.history} caseObj={caseObj} placement={placement}/>
     })
   }
 
@@ -22,21 +22,33 @@ class ListingInfo extends React.Component{
     const filteredPlacements = this.props.listing.placements.filter(placement => {
       return placement.status === 'pending'
     })
-    return this.renderCaseCard(filteredPlacements)
+    if (filteredPlacements.length === 0) {
+      return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
+    } else {
+      return this.renderCaseCard(filteredPlacements)
+    }
   }
 
   renderApprovedRequest(){
     const filteredPlacements = this.props.listing.placements.filter(placement => {
       return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) > Date.parse(this.props.currentDate)
     })
-    return this.renderCaseCard(filteredPlacements)
+    if (filteredPlacements.length === 0) {
+      return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
+    } else {
+      return this.renderCaseCard(filteredPlacements)
+    }
   }
 
   renderPastRequest(){
     const filteredPlacements = this.props.listing.placements.filter(placement => {
       return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) < Date.parse(this.props.currentDate)
     })
-    return this.renderCaseCard(filteredPlacements)
+    if (filteredPlacements.length === 0) {
+      return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
+    } else {
+      return this.renderCaseCard(filteredPlacements)
+    }
   }
 
 

@@ -31,7 +31,11 @@ class NewMessage extends React.Component {
     })
     .then(resp => resp.json())
     .then(response => {
-      this.props.newMessage(response)
+      if (response.errors){
+        alert(response.errors)
+      } else {
+        this.props.newMessage(response)
+      }
     })
     .then(() => this.setState({body: ""}))
   }

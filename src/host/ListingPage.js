@@ -15,7 +15,7 @@ class ListingPage extends React.Component {
     return (
       <div>
         <ListingProfile history={this.props.history} listing={this.props.listing}/>
-        {this.props.userType === 'host' ? <ListingInfo listing={this.props.listing}/> : null}
+        {this.props.userType === 'host' ? <ListingInfo history={this.props.history} listing={this.props.listing}/> : null}
       </div>
     )
   }

@@ -9,6 +9,7 @@ import house from '../images/house.png'
 import capacity from '../images/bullet-points/capacity.png'
 import calendar from '../images/calendar.png'
 import profile from '../images/profile.svg'
+import case_image from '../images/default_case_img.jpg'
 
 class CaseProfile extends React.Component {
 
@@ -140,7 +141,7 @@ class CaseProfile extends React.Component {
           </div>
           <div className="case-profile-main-info">
               <div className="case-profile-pic">
-                <img src={this.props.caseObj.image_url}/>
+                <img src={this.props.caseObj.image_url ? this.props.caseObj.image_url : case_image}/>
               </div>
               <div className="calendar-container">
                 {this.props.userType === 'caseworker' ? this.renderCalendar() : this.renderMessageCaseworker()}
