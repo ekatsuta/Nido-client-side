@@ -9,6 +9,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Goal
 A web app to connect volunteers offering up housing with caseworkers representing refugees & asylum seekers
 
+### Instructions 
+
+1. On terminal, run `npm start`
+2. For the backend API (https://github.com/ekatsuta/Nido-api), clone repository and run `rails s`
+
 ### Functions 
 - React app with double authentication & authorization between hosts and caseworkers. 
 - Leveraged Redux to enhance the readability and efficiency of the React components 
