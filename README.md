@@ -11,8 +11,9 @@ A web app to connect volunteers offering up housing with caseworkers representin
 
 ### Instructions 
 
-1. On terminal, run `npm start`
-2. For the backend API (https://github.com/ekatsuta/Nido-api), clone repository and run `rails s`
+1. `npm install`
+2. On terminal, run `npm start`
+2. For the backend API (https://github.com/ekatsuta/Nido-api), clone repository, `bundle install` and run `rails s`
 
 ### Functions 
 - React app with double authentication & authorization between hosts and caseworkers. 
