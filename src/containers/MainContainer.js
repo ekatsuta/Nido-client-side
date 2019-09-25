@@ -17,7 +17,6 @@ import EditListing from '../host/EditListing'
 import EditCase from '../caseworker/EditCase'
 import MessageContainer from '../message/MessageContainer'
 
-
 import {generateMSP} from '../actions/msp_template'
 import {loadListings, loadCases} from '../actions/actions'
 
@@ -94,4 +93,4 @@ class MainContainer extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings", "cases", "allListings", "allCases", "currentCase", "loading"]), {loadListings, loadCases})(MainContainer)
+export default connect(generateMSP(["listings", "cases", "allListings", "allCases", "loading"]), {loadListings, loadCases})(MainContainer)

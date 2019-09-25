@@ -58,4 +58,4 @@ function CasesContainer (props){
 
 }
 
-export default connect(generateMSP(["placements", "cases", "currentDate"]))(CasesContainer)
+export default connect(generateMSP(["cases"]))(CasesContainer)

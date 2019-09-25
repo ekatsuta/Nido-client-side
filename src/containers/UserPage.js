@@ -88,4 +88,4 @@ class UserPage extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings", "loaded", "placements"]), {resetCase})(UserPage)
+export default connect(generateMSP(["userType", "placements"]), {resetCase})(UserPage)

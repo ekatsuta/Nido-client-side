@@ -278,12 +278,4 @@ class NewCaseQuestions extends React.Component {
 }
 
 
-
-
-//
-//
-//
-//
-// </form>
-
-export default connect(generateMSP(["userType", "currentUser", "languages"]), {addCase})(NewCaseQuestions)
+export default connect(generateMSP(["currentUser", "languages"]), {addCase})(NewCaseQuestions)

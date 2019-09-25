@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactFilestack from 'filestack-react';
 import {connect} from 'react-redux'
-import {generateMSP} from '../actions/msp_template'
 import {editListing} from '../actions/actions'
 
 class EditListing extends React.Component {
@@ -110,4 +109,4 @@ class EditListing extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "languages"]), {editListing})(EditListing)
+export default connect(null, {editListing})(EditListing)

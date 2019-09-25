@@ -1,6 +1,5 @@
 import React from 'react'
 import CaseCard from '../caseworker/CaseCard'
-
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 

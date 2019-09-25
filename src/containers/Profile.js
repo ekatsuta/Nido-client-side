@@ -31,4 +31,4 @@ function Profile (props) {
 
 }
 
-export default connect(generateMSP(["currentUser", "placements"]))(Profile)
+export default connect(generateMSP(["placements"]))(Profile)

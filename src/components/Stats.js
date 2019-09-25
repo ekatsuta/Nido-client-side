@@ -5,14 +5,6 @@ import {generateMSP} from '../actions/msp_template'
 
 class Stats extends React.Component {
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if (prevProps.data !== this.props.data) {
-  //     this.setState({
-  //       chartData: {...this.state.chartData, datasets: [{...this.state.chartData.datasets[0], data: this.props.data}]}
-  //     })
-  //   }
-  // }
-
   state = {
     chartData: {
       labels: this.props.userType === 'host' ? ['Approved', 'Pending', 'Cancelled'] : ['Approved', 'Pending', 'Cancelled', 'Need Placement'],

@@ -163,4 +163,4 @@ class CaseProfile extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings", "allListings", "currentDate"]), {deleteCase, setConversation})(CaseProfile)
+export default connect(generateMSP(["userType", "currentUser"]), {deleteCase, setConversation})(CaseProfile)

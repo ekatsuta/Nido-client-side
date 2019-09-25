@@ -102,4 +102,4 @@ class UserProfile extends React.Component {
 }
 
 
-export default connect(generateMSP(["userType", "currentUser"]), {setUser})(UserProfile)
+export default connect(generateMSP(["currentUser"]), {setUser})(UserProfile)

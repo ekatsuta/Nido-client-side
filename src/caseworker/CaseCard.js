@@ -172,4 +172,4 @@ function CaseCard (props) {
 
 }
 
-export default connect(generateMSP(["userType", "currentDate", "currentDate", "allCases"]), {approveOrCancelPlacement, setCase, checkPlacement})(CaseCard)
+export default connect(generateMSP(["userType", "currentDate"]), {approveOrCancelPlacement, setCase, checkPlacement})(CaseCard)

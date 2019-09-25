@@ -97,4 +97,4 @@ class EditCase extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "languages"]), {editCase})(EditCase)
+export default connect(generateMSP(["languages"]), {editCase})(EditCase)

@@ -126,7 +126,7 @@ class CaseCardContainer extends React.Component {
       }
     }
   }
-  
+
   renderFilterOptions(){
     return (
       <div className='filter-options-container'>
@@ -175,4 +175,4 @@ class CaseCardContainer extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "cases", "allCases", "currentDate"]))(CaseCardContainer)
+export default connect(generateMSP(["userType", "cases", "allCases", "currentDate"]))(CaseCardContainer)

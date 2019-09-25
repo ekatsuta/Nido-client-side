@@ -192,4 +192,4 @@ class BookingInfo extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings", "cases", "currentCase", "currentDate"]), {addPlacementToCase})(BookingInfo)
+export default connect(generateMSP(["cases", "currentCase", "currentDate"]), {addPlacementToCase})(BookingInfo)

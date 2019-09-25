@@ -5,8 +5,6 @@ import legal from '../images/provisions/legal.png'
 import food from '../images/provisions/food.png'
 import language from '../images/provisions/language.png'
 import transportation from '../images/provisions/transportation.png'
-import {connect} from 'react-redux'
-import {generateMSP} from '../actions/msp_template'
 
 class ListingCard extends React.Component {
 
@@ -113,4 +111,4 @@ class ListingCard extends React.Component {
   }
 }
 
-export default connect(generateMSP(["userType"]))(ListingCard)
+export default ListingCard

@@ -12,7 +12,7 @@ class CasePage extends React.Component {
   }
 
   render(){
-    
+
     return (
       <div className="casepage-container">
       <CaseProfile history={this.props.history} caseObj={this.props.caseObj}/>
@@ -22,4 +22,4 @@ class CasePage extends React.Component {
   }
 }
 
-export default connect(generateMSP(["currentCase", "currentUser"]))(CasePage)
+export default connect(generateMSP(["currentUser"]))(CasePage)

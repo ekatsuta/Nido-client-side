@@ -21,7 +21,7 @@ function Conversation (props) {
     if (props.conversation.sender.id === props.currentUser.id) {
       return (
         <div className="recipient-info">
-        <img style={{width: '30px', height: '30px', borderRadius: '30px'}} src={props.conversation.recipient.profile_image ? this.props.conversation.recipient.profile_image : profile}/>
+        <img style={{width: '30px', height: '30px', borderRadius: '30px'}} src={props.conversation.recipient.profile_image ? props.conversation.recipient.profile_image : profile}/>
         <h6>{props.conversation.recipient.name}</h6>
         </div>
       )

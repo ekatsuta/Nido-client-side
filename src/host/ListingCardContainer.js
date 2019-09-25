@@ -153,4 +153,4 @@ class ListingCardContainer extends React.Component{
   }
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings", "allListings", "languages", "provisions"]))(ListingCardContainer)
+export default connect(generateMSP(["userType", "listings", "allListings", "languages", "provisions"]))(ListingCardContainer)

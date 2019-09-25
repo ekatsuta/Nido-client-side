@@ -33,4 +33,4 @@ function ListingsContainer (props) {
 
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings", "placements"]))(ListingsContainer)
+export default connect(generateMSP(["userType", "placements"]))(ListingsContainer)

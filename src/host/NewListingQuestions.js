@@ -407,4 +407,4 @@ class NewListingQuestions extends React.Component {
 
 
 
-export default connect(generateMSP(["userType", "currentUser", "languages", "provisions"]), {addListing,addToAllListing})(NewListingQuestions)
+export default connect(generateMSP(["currentUser", "languages", "provisions"]), {addListing,addToAllListing})(NewListingQuestions)

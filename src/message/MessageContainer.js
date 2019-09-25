@@ -2,8 +2,6 @@ import React from 'react'
 import ConversationContainer from './ConversationContainer'
 import MessageList from './MessageList'
 import NewMessage from './NewMessage'
-import {connect} from 'react-redux'
-import {generateMSP} from '../actions/msp_template'
 
 class MessageContainer extends React.Component {
 
@@ -24,4 +22,4 @@ class MessageContainer extends React.Component {
   }
 }
 
-export default connect(generateMSP(["currentConversation"]))(MessageContainer)
+export default MessageContainer

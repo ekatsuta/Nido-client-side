@@ -237,4 +237,4 @@ class ListingProfile extends React.Component {
 
 }
 
-export default connect(generateMSP(["userType", "currentUser", "listings"]), {deleteListing, setConversation})(ListingProfile)
+export default connect(generateMSP(["userType", "currentUser"]), {deleteListing, setConversation})(ListingProfile)

@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {setUser} from '../actions/actions'
-import {generateMSP} from '../actions/msp_template'
 
 
 class Signup extends React.Component {
@@ -94,6 +93,4 @@ class Signup extends React.Component {
 }
 
 
-export default connect(generateMSP(["userType", "currentUser"]), {
-  setUser
-})(Signup)
+export default connect(null, {setUser})(Signup)

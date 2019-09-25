@@ -54,7 +54,7 @@ class EditUserProfile extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <input type="text" name="name" value={this.state.name} onChange={this.handleInput} placeholder="Your Name"/>
             <textarea name="description" value={this.state.description} onChange={this.handleInput} placeholder="Brief Description about Yourself"/>
-          
+
             <ReactFilestack
             apikey={"ASRKTt2smQC6FJUSI8YrSz"}
             onSuccess={(res) => {
@@ -74,6 +74,4 @@ class EditUserProfile extends React.Component {
 }
 
 
-export default connect(generateMSP(["userType", "currentUser"]), {
-  setUser
-})(EditUserProfile)
+export default connect(generateMSP(["userType", "currentUser"]), {setUser})(EditUserProfile)
