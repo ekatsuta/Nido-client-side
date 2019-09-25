@@ -4,16 +4,16 @@ import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 
 
-class ListingSuggestions extends React.Component{
+function ListingSuggestions (props) {
 
-  renderPendingRequest(){
-    const foundPlacements = this.props.caseObj.placements.filter(placement => {
+  function renderPendingRequest(){
+    const foundPlacements = props.caseObj.placements.filter(placement => {
       return placement.status === 'pending'
     })
     const placementListingIds = foundPlacements.map(placement => {
       return placement.listing_id
     })
-    const pendingListings = this.props.allListings.filter(listing => {
+    const pendingListings = props.allListings.filter(listing => {
       return placementListingIds.includes(listing.id)
     })
 
@@ -22,18 +22,18 @@ class ListingSuggestions extends React.Component{
     }
 
     return pendingListings.map(listing => {
-      return <ListingCard history={this.props.history} listing={listing}/>
+      return <ListingCard history={props.history} listing={listing}/>
     })
   }
 
-  renderApprovedRequest(){
-    const foundPlacements = this.props.caseObj.placements.filter(placement => {
-      return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) > Date.parse(this.props.currentDate)
+  function renderApprovedRequest(){
+    const foundPlacements = props.caseObj.placements.filter(placement => {
+      return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) > Date.parse(props.currentDate)
     })
     const placementListingIds = foundPlacements.map(placement => {
       return placement.listing_id
     })
-    const approvedListings = this.props.allListings.filter(listing => {
+    const approvedListings = props.allListings.filter(listing => {
       return placementListingIds.includes(listing.id)
     })
 
@@ -43,18 +43,18 @@ class ListingSuggestions extends React.Component{
 
     return approvedListings.map(listing => {
       const booking = foundPlacements.find(placement => placement.listing_id === listing.id)
-      return <ListingCard history={this.props.history} listing={listing} placement={booking}/>
+      return <ListingCard history={props.history} listing={listing} placement={booking}/>
     })
   }
 
-  renderPastListings(){
-    const foundPlacements = this.props.caseObj.placements.filter(placement => {
-      return placement.status === 'approved' && Date.parse(placement.period.split(",")[1]) < Date.parse(this.props.currentDate)
+  function renderPastListings(){
+    const foundPlacements = props.caseObj.placements.filter(placement => {
+      return placement.status === 'approved' && Date.parse(placement.period.split(",")[1]) < Date.parse(props.currentDate)
     })
     const placementListingIds = foundPlacements.map(placement => {
       return placement.listing_id
     })
-    const pastListings = this.props.allListings.filter(listing => {
+    const pastListings = props.allListings.filter(listing => {
       return placementListingIds.includes(listing.id)
     })
 
@@ -63,23 +63,23 @@ class ListingSuggestions extends React.Component{
     }
 
     return pastListings.map(listing => {
-      return <ListingCard history={this.props.history} listing={listing}/>
+      return <ListingCard history={props.history} listing={listing}/>
     })
   }
 
-  renderSuggestions(){
+  function renderSuggestions(){
     //first filter listings that can hold the number of guests
-    const filteredListings = this.props.allListings.filter(listing => {
-      return listing.capacity >= this.props.caseObj.num_members
+    const filteredListings = props.allListings.filter(listing => {
+      return listing.capacity >= props.caseObj.num_members
     })
     if (filteredListings.length > 3) {
       //filter down to household preference or guest preference
       const subfilteredList = filteredListings.filter(listing => {
-        return listing.household_type === this.props.caseObj.household_preference || listing.guest_preference === this.props.caseObj.guest_type
+        return listing.household_type === props.caseObj.household_preference || listing.guest_preference === props.caseObj.guest_type
       })
       const languageMatch = filteredListings.filter(listing => {
         const listingLanguages = listing.languages.map(language => language.language)
-        const caseLanguages = this.props.caseObj.languages.map(language => language.language)
+        const caseLanguages = props.caseObj.languages.map(language => language.language)
 
         for (let i = 0; i < listingLanguages.length; i++){
           for (let j = 0; j < caseLanguages.length; j++) {
@@ -91,40 +91,40 @@ class ListingSuggestions extends React.Component{
       })
       const finalList = subfilteredList.concat(languageMatch)
       return finalList.map(listing => {
-        return <ListingCard listing={listing} history={this.props.history}/>
+        return <ListingCard listing={listing} history={props.history}/>
       })
     } else {
       return filteredListings.map(listing => {
-        return <ListingCard listing={listing} history={this.props.history}/>
+        return <ListingCard listing={listing} history={props.history}/>
       })
     }
 
   }
 
-  render(){
-    return(
-      <div className="case-listings-container">
-        <div className='listing-suggestions-container'>
-          <h3>Listing Suggestions:</h3>
-          {this.renderSuggestions()}
+
+  return(
+    <div className="case-listings-container">
+      <div className='listing-suggestions-container'>
+        <h3>Listing Suggestions:</h3>
+        {renderSuggestions()}
+      </div>
+      <div className="pending-approved-past-container">
+        <div className='pending-lists'>
+          <h4>PENDING REQUESTS:</h4>
+          {renderPendingRequest()}
         </div>
-        <div className="pending-approved-past-container">
-          <div className='pending-lists'>
-            <h4>PENDING REQUESTS:</h4>
-            {this.renderPendingRequest()}
-          </div>
-          <div className='approved-lists'>
-            <h4>APPROVED REQUESTS:</h4>
-            {this.renderApprovedRequest()}
-          </div>
-          <div className='past-lists'>
-            <h4>PAST LISTINGS:</h4>
-            {this.renderPastListings()}
-          </div>
+        <div className='approved-lists'>
+          <h4>APPROVED REQUESTS:</h4>
+          {renderApprovedRequest()}
+        </div>
+        <div className='past-lists'>
+          <h4>PAST LISTINGS:</h4>
+          {renderPastListings()}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+
 }
 
 export default connect(generateMSP(["allListings", "currentDate"]))(ListingSuggestions)

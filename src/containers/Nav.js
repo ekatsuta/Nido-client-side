@@ -5,58 +5,44 @@ import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 import nest from '../images/nest.png'
 
-class Nav extends React.Component {
+function Nav (props) {
 
-  logOut =()=>{
-    this.props.logout()
-    this.props.routerProps.history.push('/login')
+  function logOut (){
+    props.logout()
+    props.routerProps.history.push('/')
   }
-  //
-  // componentDidMount(){
-  //   window.addEventListener('scroll', this.handleScroll)
-  // }
-  //
-  // handleScroll = () => {
-  //   const navbar = document.getElementsByClassName('navbar')
-  //   if (window.scrollY > 400) {
-  //     navbar[0].style.color = "blue"
-  //   } else {
-  //     navbar[0].style.color = "white"
-  //   }
-  // }
 
-  renderLoginSignup(){
+  function renderLoginSignup(){
     return (
       <div className="login-signup-nav">
-        <Link to="/login">Login</Link>
+        <Link to="/">Login</Link>
         <Link to="/signup">Sign Up</Link>
       </div>
     )
   }
 
-  renderHomeLogout(){
+  function renderHomeLogout(){
     return (
       <div className="home-logout-nav">
         <Link to="/home">Home</Link>
         <Link to='/message'>
           <p>Message</p>
-          {this.props.unreadMessages > 0 ? <div className="unread-messages">{this.props.unreadMessages}</div> : null}
+          {props.unreadMessages > 0 ? <div className="unread-messages">{props.unreadMessages}</div> : null}
         </Link>
-        <button onClick={this.logOut}>Log Out</button>
+        <button onClick={logOut}>Log Out</button>
       </div>
     )
   }
 
-  render(){
-    return (
-      <div className="navbar" >
-        <h3>NIDO</h3>
-        {this.props.routerProps.location.pathname === '/login' || this.props.routerProps.location.pathname ==='/signup' ? this.renderLoginSignup() : null}
-        {this.props.routerProps.location.pathname !== '/login' && this.props.routerProps.location.pathname !== '/signup'? this.renderHomeLogout() : null}
+  return (
+    <div className="navbar" >
+      <h3>NIDO</h3>
+      {props.routerProps.location.pathname === '/' || props.routerProps.location.pathname ==='/signup' ? renderLoginSignup() : null}
+      {props.routerProps.location.pathname !== '/' && props.routerProps.location.pathname !== '/signup'? renderHomeLogout() : null}
 
-      </div>
-    )
-  }
+    </div>
+  )
+
 
 }
 

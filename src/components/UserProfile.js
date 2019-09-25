@@ -59,19 +59,19 @@ class UserProfile extends React.Component {
     if (!this.state.editMode) {
       return(
         <div className="main-profile-container">
-        <h3>Your Profile</h3>
-          <div className="profile-container">
-            <div className="profile-image-and-names">
-              {profile_image ? <img src={this.props.currentUser.profile_image}/> : <img src={default_profile}/>}
-              <h1>{this.props.currentUser.name}</h1>
-              <h2>{this.props.currentUser.username}</h2>
+          <h3>Your Profile</h3>
+            <div className="profile-container">
+              <div className="profile-image-and-names">
+                {profile_image ? <img src={this.props.currentUser.profile_image}/> : <img src={default_profile}/>}
+                <h1>{this.props.currentUser.name}</h1>
+                <h2>{this.props.currentUser.username}</h2>
+              </div>
+              <div className="profile-description">
+                <h4>{this.props.currentUser.user_type.toUpperCase()}</h4>
+                <p>{this.props.currentUser.description}</p>
+                <button onClick={this.editProfile}>Edit Profile</button>
+              </div>
             </div>
-            <div className="profile-description">
-              <h4>{this.props.currentUser.user_type.toUpperCase()}</h4>
-              <p>{this.props.currentUser.description}</p>
-              <button onClick={this.editProfile}>Edit Profile</button>
-            </div>
-          </div>
         </div>
       )
     } else {

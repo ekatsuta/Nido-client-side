@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 import profile from '../images/profile.svg'
 
-const Message = props => {
+function Message (props){
+  
   function renderName(){
     if (props.message.user_id === props.currentUser.id) {
       return <img style={{width: '30px', height: '30px', borderRadius: '30px'}} src={props.currentUser.profile_image ? props.currentUser.profile_image : profile}/>

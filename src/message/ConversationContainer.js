@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 
 
-const ConversationContainer = props => {
+function ConversationContainer (props) {
 
   function renderConversations(){
-    
+
     if (props.conversations.length === 0) {
       return <div>No Conversations</div>
     }

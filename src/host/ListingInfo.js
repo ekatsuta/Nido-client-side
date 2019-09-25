@@ -4,77 +4,70 @@ import CaseCard from '../caseworker/CaseCard'
 import {connect} from 'react-redux'
 import {generateMSP} from '../actions/msp_template'
 
-class ListingInfo extends React.Component{
+function ListingInfo (props) {
 
-
-
-
-  renderCaseCard(placementsArr){
+  function renderCaseCard(placementsArr){
     return placementsArr.map(placement => {
-      const caseObj = this.props.allCases.find(caseInstance => {
+      const caseObj = props.allCases.find(caseInstance => {
         return caseInstance.id === placement.case_id
       })
-      return <CaseCard history={this.props.history} caseObj={caseObj} placement={placement}/>
+      return <CaseCard history={props.history} caseObj={caseObj} placement={placement}/>
     })
   }
 
-  renderPendingRequest(){
-    const filteredPlacements = this.props.listing.placements.filter(placement => {
+  function renderPendingRequest(){
+    const filteredPlacements = props.listing.placements.filter(placement => {
       return placement.status === 'pending'
     })
     if (filteredPlacements.length === 0) {
       return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
     } else {
-      return this.renderCaseCard(filteredPlacements)
+      return renderCaseCard(filteredPlacements)
     }
   }
 
-  renderApprovedRequest(){
-    const filteredPlacements = this.props.listing.placements.filter(placement => {
-      return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) > Date.parse(this.props.currentDate)
+  function renderApprovedRequest(){
+    const filteredPlacements = props.listing.placements.filter(placement => {
+      return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) > Date.parse(props.currentDate)
     })
     if (filteredPlacements.length === 0) {
       return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
     } else {
-      return this.renderCaseCard(filteredPlacements)
+      return renderCaseCard(filteredPlacements)
     }
   }
 
-  renderPastRequest(){
-    const filteredPlacements = this.props.listing.placements.filter(placement => {
-      return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) < Date.parse(this.props.currentDate)
+  function renderPastRequest(){
+    const filteredPlacements = props.listing.placements.filter(placement => {
+      return placement.status === 'approved' && Date.parse(placement.period.split(",")[0]) < Date.parse(props.currentDate)
     })
     if (filteredPlacements.length === 0) {
       return <p style={{fontStyle: 'italic', color: '#e7344a'}}>None</p>
     } else {
-      return this.renderCaseCard(filteredPlacements)
+      return renderCaseCard(filteredPlacements)
     }
   }
 
 
-
-
-
-  render(){
-    return (
-      <div className='listinginfo-container'>
-        <div className="pending-approved-past-container">
-          <div className='pending-lists'>
-            <h4>PENDING REQUESTS:</h4>
-            {this.renderPendingRequest()}
-          </div>
-          <div className='approved-lists'>
-            <h4>APPROVED REQUESTS:</h4>
-            {this.renderApprovedRequest()}
-          </div>
-          <div className='pending-lists'>
-            <h4>PAST REQUESTS:</h4>
-            {this.renderPastRequest()}
-          </div>
+  return (
+    <div className='listinginfo-container'>
+      <div className="pending-approved-past-container">
+        <div className='pending-lists'>
+          <h4>PENDING REQUESTS:</h4>
+          {renderPendingRequest()}
+        </div>
+        <div className='approved-lists'>
+          <h4>APPROVED REQUESTS:</h4>
+          {renderApprovedRequest()}
+        </div>
+        <div className='pending-lists'>
+          <h4>PAST REQUESTS:</h4>
+          {renderPastRequest()}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+
 }
 
 
